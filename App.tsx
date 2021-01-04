@@ -1,13 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+//UI
+import { StyleSheet } from 'react-native';
+//Navigator
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { AppNavigatorParamList } from './types';
+//Screens
+import Home from './screens/HomeScreen';
+import Grimoire from './screens/GrimoireScreen';
 
-export default function App() {
+const {Navigator, Screen} = createStackNavigator<AppNavigatorParamList>();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+   <NavigationContainer>
+     <Navigator initialRouteName="Home">
+       <Screen 
+       name="Home" 
+       component={Home} 
+       />
+       <Screen 
+       name="Grimoire" 
+       component={Grimoire} 
+       />
+     </Navigator>
+   </NavigationContainer>
   );
 }
 
@@ -19,3 +36,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App;
